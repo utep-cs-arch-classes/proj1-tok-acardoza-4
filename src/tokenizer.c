@@ -89,6 +89,41 @@ void print_tokens(char **tokens)
   }
 }
 
+/* Frees all tokens and the vector containing them. */
+void free_tokens(char **tokens)
+{
+  int i;
+  for(i = 0; tokens[i] != NULL; i++) {
+    free(tokens[i]);
+  }
+  free(tokens);
+}
+
+/* Returns a freshly allocated zero-terminated vector of freshly allocated
+   space-separated tokens from zero-terminated str.
+   For example, tokenize("hello world string") would result in:
+     tokens[0] = "hello"
+     tokens[1] = "world"
+     tokens[2] = "string"
+     tokens[3] = 0
+*/
+char **tokenize(char* str)
+{
+  int word_count = count_words(str);
+  char **word_array = (char **)malloc(sizeof(char*) * (word_count + 1));
+
+  int i;
+  int length;
+  for (i = 0; i < word_count - 1; i++) {
+    str = word_start(str);
+    length = word_end(str) - str;
+    word_array[i] = copy_str(str, length);
+    str = word_end(str);
+  }
+  word_array[i] = '\0';
+  return word_array;
+}
+
 /* Tests some of the functions in tokenizer.c */
 int main()
 {
