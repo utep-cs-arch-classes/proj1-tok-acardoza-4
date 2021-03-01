@@ -76,7 +76,20 @@ char *copy_str(char *inStr, short len)
   return word_list;
 }
 
-/* Tests the various functions in tokenizer.c */
+/* Prints all tokens. */
+void print_tokens(char **tokens)
+{
+  int i;
+  int j;
+  for(i = 0; tokens[i] != NULL; i++) {
+    for(j = 0; tokens[i][j] != '\0'; j++) {
+      printf("[%c]", tokens[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+/* Tests some of the functions in tokenizer.c */
 int main()
 {
   /* Testing space_char. */
