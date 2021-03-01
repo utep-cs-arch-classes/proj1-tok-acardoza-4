@@ -61,8 +61,22 @@ int count_words(char *str)
   }
   return word_num;
 }
-/*
-  /* Tests the various functions in tokenizer.c */
+
+/* Returns a fresly allocated new zero-terminated string 
+   containing <len> chars from <inStr> */
+char *copy_str(char *inStr, short len)
+{
+  int i;
+  char *word_list;
+  word_list = (char *)malloc(sizeof(char) * (len + 1));
+  for (i = 0; i < len; i++) {
+    word_list[i] = inStr[i];
+  }
+  word_list[i] = '\0';
+  return word_list;
+}
+
+/* Tests the various functions in tokenizer.c */
 int main()
 {
   /* Testing space_char. */
