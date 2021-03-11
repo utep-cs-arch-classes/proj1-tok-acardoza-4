@@ -8,7 +8,7 @@ some header files, and a makefile. Tokenizer's goal is to continuously receive
 input from the user and tokenize it while storing it in a history list so the
 user can access it later on.
 
-##How To Run
+## How To Run
 
 Compile Tokenizer by running ***make*** in the terminal. Run the program with
 ***./tokenizer*** in the terminal.
