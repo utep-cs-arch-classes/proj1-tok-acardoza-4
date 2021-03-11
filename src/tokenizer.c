@@ -83,7 +83,7 @@ void print_tokens(char **tokens)
   int j;
   for(i = 0; tokens[i] != NULL; i++) {
     for(j = 0; tokens[i][j] != '\0'; j++) {
-      printf("[%c]", tokens[i][j]);
+      printf("%c", tokens[i][j]);
     }
     printf("\n");
   }
@@ -122,31 +122,4 @@ char **tokenize(char* str)
   }
   word_array[i] = '\0';
   return word_array;
-}
-
-/* Tests some of the functions in tokenizer.c */
-int main()
-{
-  /* Testing space_char. */
-  char test_char1 = 'M';
-  char test_char2 = ' ';
-  if (space_char(test_char1))
-    printf("%c is a whitespace!\n", test_char1);
-  else{
-    printf("%c is a char!\n", test_char1);
-  }
-  
-  /* Testing word_start */
-  char *sp, *ep;
-  char s[] = "   This string has five words";
-  sp = word_start(s);
-  printf("%c is the first char\n", *sp);
-
-  /* Testing word_end */
-  ep = word_end(s);
-  printf("%c is the last char\n", *(ep - 1));
-
-  /* Testing word_count */
-  sp = s;
-  printf("There are %d words in the string\n", count_words(sp));
 }

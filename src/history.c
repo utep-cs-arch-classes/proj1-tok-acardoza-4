@@ -17,28 +17,26 @@ List* init_history()
 */
 void add_history(List *list, char *str)
 {
-  short str_len;
+  int str_len;
   for(str_len = 0; str[str_len] != '\0'; str_len++){
     ;
   }
-  int prev_id = 0;
+  int prev_id = 1;
   Item *new_history = (Item *)malloc(sizeof(Item));
   new_history->str  = copy_str(str, str_len);
   new_history->next = NULL;
   if (list->root == NULL) {
     list->root = new_history;
-    new_history->id = 1;
-    prev_id++;
+    new_history->id = prev_id;
   }
   else {
-    Item *temp = (Item *)malloc(sizeof(Item));
-    temp = list->root->next;
-    prev_id = list->root->id;
-    while(temp != NULL) {
-      prev_id++;
+    Item *temp = list->root;
+    while(temp->next != NULL) {
+      ++prev_id;
       temp = temp->next;
     }
-    temp = new_history;
+    ++prev_id;
+    temp->next = new_history;
     new_history->id = prev_id;
   }
 }
@@ -78,16 +76,3 @@ void free_history(List *list)
     current = next;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
