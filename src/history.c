@@ -30,13 +30,13 @@ void add_history(List *list, char *str)
     new_history->id = prev_id;
   }
   else {
-    Item *temp = list->root;
-    while(temp->next != NULL) {
+    Item *current = list->root;
+    while(current->next != NULL) {
+      current = current->next;
       ++prev_id;
-      temp = temp->next;
     }
+    current->next = new_history;
     ++prev_id;
-    temp->next = new_history;
     new_history->id = prev_id;
   }
 }
@@ -58,8 +58,9 @@ void print_history(List* list)
 {
   Item *current = list->root;
   while(current != NULL) {
-    printf(" %s ", current->str);
+    printf("%d: %s ",current->id, current->str);
     current = current->next;
+    printf("\n");
   }
   printf("\n");
 }
